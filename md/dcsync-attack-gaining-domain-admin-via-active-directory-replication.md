@@ -13,17 +13,20 @@ A DCSync attack is an exploitation technique that abuses the Microsoft Directory
 
 ---
 ### Initial Setup
-![image](https://github.com/user-attachments/assets/01dad5a1-bc48-4c64-a055-85cdf67bde42)
+
+![image](https://github.com/user-attachments/assets/1c1e49b8-2dc9-48f9-b9b7-fff0198cf417)
+
 
 Open the Tools navigation and select ADUC
 
 
-![image](https://github.com/user-attachments/assets/01dad5a1-bc48-4c64-a055-85cdf67bde42)
+![image](https://github.com/user-attachments/assets/e96529a7-3d7b-4cf6-83b3-37a4acfb86f0)
+
 
 Open the Tools navigation and select ADUC
 
 
-![image](https://github.com/user-attachments/assets/737d21ed-f73b-450e-ab9a-a1e89a2db99a)
+![image](https://github.com/user-attachments/assets/6d242e93-b43a-49f1-b63a-ffa66437446b)
 
 
 Right-click on the domain and select Properties
