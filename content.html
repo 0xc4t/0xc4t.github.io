@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xc4t Notes</title>
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1900590239833616384/CutzQtAQ_400x400.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.3.2/markdown-it.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+
+      body {
+        background-color: #1e1e2e;
+        color: #cdd6f4;
+        font-family: "JetBrains Mono", monospace;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      a {
+        color: #89b4fa;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: #f38ba8;
+      }
+
+      h1 {
+        font-size: 25px;
+        margin-bottom: 5px;
+      }
+
+      code {
+        font-family: monospace;
+        color: #ffffff;
+      }
+
+      pre {
+        overflow-x: auto;
+        white-space: pre;
+        padding: 10px;
+        background-color: #07070d;
+        border-radius: 5px;
+      }
+
+      p {
+        margin-top: 0;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin-right: 15px;
+        font-weight: bold;
+        color: #cba6f7;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid #45475a;
+        margin: 20px 0;
+      }
+
+      .content {
+        margin-top: 20px;
+      }
+
+      .footer {
+        font-size: 12px;
+        margin-top: 40px;
+        color: #a6adc8;
+      }
+
+      h2,
+      h3 {
+        color: #cba6f7;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p>
+      <i>Web Security & Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="index.html">Posts</a>
+      <a href="#">About</a>
+    </nav>
+    <hr>
+    <div id="content" class="content">Loading...</div>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const blogFile = params.get("p");
+      if (blogFile) {
+        fetch(blogFile).then(response => {
+          if (!response.ok) throw new Error("Markdown file not found.");
+          return response.text();
+        }).then(md => {
+          let mdParser = new markdownit();
+          document.getElementById("content").innerHTML = mdParser.render(md);
+        }).catch(error => {
+          document.getElementById("content").innerHTML = " < p > Error loading content. < /p>";
+          console.error("Error fetching markdown:", error);
+        });
+      } else {
+        document.getElementById("content").innerHTML = " < p > No blog specified. < /p>";
+      }
+    </script>
+    <div class="footer">© 2024 0xc4t Notes</div>
+  </body>
+</html>
