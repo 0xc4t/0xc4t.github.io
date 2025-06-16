@@ -13,6 +13,7 @@
         background-color: #1e1e2e;
         color: #cdd6f4;
         font-family: "JetBrains Mono", monospace;
+        font-optical-sizing: auto;
         max-width: 800px;
         margin: 40px auto;
         padding: 20px;
@@ -45,8 +46,9 @@
     }
 
       p {
-        margin-top: 0;
         text-align: justify;
+        hyphens: auto;
+        margin-top: 0;
       }
 
       nav {
@@ -86,11 +88,14 @@
         display: block;
         margin: 0 auto;
       }
+     .slogan {
+        text-align: justify;
+      }
     </style>
   </head>
   <body>
     <h1>0xc4t Notes</h1>
-    <p>
+    <p class="slogan">
       <i>Web Security & Active Directory Security</i>
     </p>
     <nav>
@@ -117,6 +122,6 @@
         document.getElementById("content").innerHTML = " < p > No blog specified. < /p>";
       }
     </script>
-    <div class="footer">© 2025 0xc4t Notes</div>
+    <div class="footer">© 2024 0xc4t Notes</div>
   </body>
 </html>
