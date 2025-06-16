@@ -27,6 +27,4 @@ Using [ABE (Android Backup Extractor)](https://github.com/nelenkov/android-backu
 ### Refrence
 * [https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage](https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage)
 
-* [https://vishwarajbhattrai.wordpress.com/2017/07/17/finding-backup-vulnerabilities-in-android-apps/](https://vishwarajbhattrai.wordpress.com/2017/07/17/finding-backup-vulnerabilities-in-android-apps/)
-
 * [https://www.appsealing.com/insecure-data-storage/](https://www.appsealing.com/insecure-data-storage/)
