@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -10,8 +9,7 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
 
-
-         :root {
+      :root {
         --bg-color: #1e1e2e;
         --text-color: #cdd6f4;
         --link-color: #89b4fa;
@@ -43,6 +41,7 @@
 
       a {
         color: var(--link-color);
+        text-decoration: none;
         transition: color 0.2s ease;
       }
 
@@ -98,7 +97,7 @@
       }
 
       nav a {
-        margin-right: 15px;
+        margin-right: 12px;
         font-weight: bold;
         color: var(--nav-color);
       }
@@ -150,6 +149,11 @@
         transform: scale(1.2);
       }
 
+      .links p {
+        margin: 8px 0;  /* lebih rapat */
+        line-height: 1.4;
+      }
+
       #content blockquote {
         border-left: 4px solid var(--nav-color);
         padding-left: 1rem;
@@ -177,35 +181,32 @@
         margin: 1rem 0;
         padding-left: 2rem;
       }
-
+      
       @media (max-width: 768px) {
-     body {
+        body {
           margin: 15px auto;
           padding: 10px;
           font-size: 13px;
         }
-
-        h1 {
-          font-size: 1.6rem;
-        }
-
-        h2 {
-          font-size: 1.3rem;
-        }
-
-        h3 {
-          font-size: 1.1rem;
-        }
+        
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.3rem; }
+        h3 { font-size: 1.1rem; }
 
         nav a {
           margin-right: 10px;
           display: inline-block;
           margin-bottom: 5px;
         }
-
+        
         pre, code {
           font-size: 0.8rem;
           padding: 10px;
+        }
+        
+        .links p {
+          margin: 6px 0; /* rapat di layar kecil */
+          font-size: 13px;
         }
 
         .social-icons a {
@@ -214,49 +215,36 @@
         }
       }
 
-     @media (max-width: 480px) {
-       body {
+      @media (max-width: 480px) {
+        body {
           margin: 15px auto;
           padding: 10px;
           font-size: 13px;
         }
-
-        h1 {
-          font-size: 1.4rem;
-        }
-
-        h2 {
-          font-size: 1.2rem;
-        }
-
-        h3 {
-          font-size: 1rem;
-        }
-
+        
+        h1 { font-size: 1.4rem; }
+        h2 { font-size: 1.2rem; }
+        h3 { font-size: 1rem; }
+        
         nav a {
           margin-right: 8px;
           font-size: 0.9rem;
         }
 
         .links p {
-          margin: 14px 0;
-          padding: 10px 0;
-          line-height: 1.5;
+          margin: 5px 0; /* lebih rapat lagi */
+          font-size: 12px;
         }
-
+        
         .social-icons a {
           margin: 0 6px;
           font-size: 1.2rem;
-        }
-
-        .links {
-          margin-top: 20px;
         }
       }
     </style>
   </head>
   <body>
-    <h1>0xc4t Notes</h1>
+    <h1><a href="index.html">0xc4t Notes</a></h1>
     <p class="slogan">
       <i>Web Security & Active Directory Security</i>
     </p>
@@ -268,15 +256,15 @@
 
     <h1>Posts</h1>
     <div class="links">
-      <p>2025-06-17 >> <a href="/content.html?p=md/Backup-Vulnerabilities-Android-Mobile-Application.md"> Backup Vulnerabilities Android Mobile Application</a></p>
-      <p>2025-03-16 >> <a href="/content.html?p=md/lateral-movement-double-pivoting-with-ligolo-ng.md"> Lateral Movement — Double Pivoting with Ligolo-ng</a></p>
-      <p>2025-03-16 >> <a href="/content.html?p=md/Extract-file-from-DS_Store.md"> Extract file from .DS_Store</a></p>
+      <p>2025-06-17 >> <a href="/content.html?p=md/Backup-Vulnerabilities-Android-Mobile-Application.md">Backup Vulnerabilities Android Mobile Application</a></p>
+      <p>2025-03-16 >> <a href="/content.html?p=md/lateral-movement-double-pivoting-with-ligolo-ng.md">Lateral Movement — Double Pivoting with Ligolo-ng</a></p>
+      <p>2025-03-16 >> <a href="/content.html?p=md/Extract-file-from-DS_Store.md">Extract file from .DS_Store</a></p>
       <p>2025-09-03 >> <a href="/content.html?p=md/ESC1-AD-CS-Misconfigurations-exploitation—Active-Directory-Pentesting.md">AD CS Attack Paths Series: ESC1</a></p>
     </div>
 
-    <hr>
+    <hr>   
     <div class="social-icons">
-      <a href="https://www.instagram.com/0xc4t" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
     </div>
     <div class="footer">© 2025 0xc4t Notes</div>
