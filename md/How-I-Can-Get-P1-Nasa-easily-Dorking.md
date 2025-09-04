@@ -39,4 +39,3 @@ Thanks to my friend [Dhafy](https://www.linkedin.com/in/qadhafymuhammadtera) don
 
 ### Refrence
 - https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure
-- https://www.liputan6.com/tekno/read/5131743/hacker-china-pakai-google-drive-untuk-suntik-malware-di-jaringan-pemerintah-sejumlah-negara
