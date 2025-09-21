@@ -62,7 +62,3 @@ You can see here that the box account can access the C drive of the user kimmy a
 ![10](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*IXZ3E8Bu_RLUzygdW8xudw.png)
 Quite simple but dangerous, maybe this is all the discussion about rogue rdp, keep in mind that the article I made only focuses on practice rather than theory, because you can get the theory in articles on the internet, thank you for reading until the end.
 
-### Reference
-- [https://www.blackhillsinfosec.com/rogue-rdp-revisiting-initial-access-methods/](https://www.blackhillsinfosec.com/rogue-rdp-revisiting-initial-access-methods/)
-- [https://www.trendmicro.com/en_us/research/24/l/earth-koshchei.html](https://www.trendmicro.com/en_us/research/24/l/earth-koshchei.html)
-- [https://socprime.com/blog/rogue-rdp-attack-detection-uac-0215/](https://socprime.com/blog/rogue-rdp-attack-detection-uac-0215/)
