@@ -1,4 +1,4 @@
-<html lang="en">
+\<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -149,8 +149,37 @@
         transform: scale(1.2);
       }
 
+      /* Links / Articles list */
+      .links {
+        margin-top: 0.8rem;
+      }
+
+      /* Make each article entry a flexible row on desktop */
       .links p {
-        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0.45rem 0;
+        color: var(--text-color);
+      }
+
+      /* Date styling (separate element) */
+      .links .date {
+        min-width: 110px;           /* keeps dates aligned on wider screens */
+        font-size: 0.95rem;
+        color: var(--footer-color);
+        letter-spacing: 0.02em;
+      }
+
+      /* Title link gets full-bleed inline-block so it can wrap nicely */
+      .links a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      /* Small separator for accessibility/visual balance on desktop */
+      .links p + p {
+        margin-top: 0.35rem;
       }
 
       #content blockquote {
@@ -204,12 +233,32 @@
         }
 
         .links p {
-          text-align: left;
+          gap: 0.5rem;
         }
 
         .social-icons a {
           margin: 0 8px;
           font-size: 1.3rem;
+        }
+      }
+
+      /* Mobile: stack date above title */
+      @media (max-width: 600px) {
+        .links p {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+        }
+
+        .links .date {
+          min-width: 0;
+          font-size: 0.95rem;
+          color: var(--footer-color);
+        }
+
+        .links a {
+          font-size: 1rem;
+          line-height: 1.35;
         }
       }
 
@@ -230,7 +279,7 @@
         }
 
         .links p {
-          text-align: left;
+          gap: 0.2rem;
         }
 
         .social-icons a {
@@ -253,20 +302,20 @@
 
     <h1>Articles</h1>
     <div class="links">
-    <p>2025-10-27 &gt;&gt; <a href="/content.html?p=md/review-the-crta-new-exam.md">Review: The New CRTA Exam — Is It Easier Now?</a></p>
-    <p>2025-02-11 &gt;&gt; <a href="/content.html?p=md/esc4-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">AD CS Attack Paths Series: ESC4 ADCS Misconfigurations</a></p>
-    <p>2025-10-22 &gt;&gt; <a href="/content.html?p=md/esc3-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">AD CS Attack Paths Series: ESC3 ADCS Misconfigurations</a></p>
-    <p>2025-10-19 &gt;&gt; <a href="/content.html?p=md/esc2-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">AD CS Attack Paths Series: ESC2 ADCS Misconfigurations</a></p>
-    <p>2025-09-03 &gt;&gt; <a href="/content.html?p=md/esc1-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">AD CS Attack Paths Series: ESC1 ADCS Misconfigurations</a></p>
-    <p>2025-09-21 &gt;&gt; <a href="/content.html?p=md/first-time-WiFi-pentest—real-world-findings.md">First-Time WiFi Pentest — Real-World Findings</a></p>
-    <p>2025-09-21 &gt;&gt; <a href="/content.html?p=md/rogue-rdp-via-spear-phishing-initial-access-tactic.md">Rogue RDP via Spear Phishing: Initial Access Tactic</a></p>
-    <p>2025-09-08 &gt;&gt; <a href="/content.html?p=md/the-useless-tradition-of-ospek-and-indonesia-feudal-mentality.md">The Useless Tradition of Ospek and Indonesia’s Feudal Mentality</a></p>
-    <p>2025-09-04 &gt;&gt; <a href="/content.html?p=md/simplifying-pivoting-using-ligolo-ng.md">Simplifying Pivoting Using Ligolo-ng Lateral Movement</a></p>
-    <p>2025-09-04 &gt;&gt; <a href="/content.html?p=md/eCPPTv3-certification-review-Dont-take-it.md">eCPPTv3 Certification Review | Don’t Take It?</a></p>
-    <p>2025-09-04 &gt;&gt; <a href="/content.html?p=md/how-i-can-get-P1-nasa-easily-dorking.md">How I Can Get P1 Nasa easily — Dorking</a></p>
-    <p>2025-06-17 &gt;&gt; <a href="/content.html?p=md/backup-vulnerabilities-android-mobile-application.md">Backup Vulnerabilities Android Mobile Application</a></p>
-    <p>2025-03-16 &gt;&gt; <a href="/content.html?p=md/lateral-movement-double-pivoting-with-ligolo-ng.md">Lateral Movement Double Pivoting with Ligolo-ng</a></p>
-    <p>2025-03-16 &gt;&gt; <a href="/content.html?p=md/backup-vulnerabilities-android-mobile-application.md">Extract file from .DS_Store — Information Disclosure</a></p>
+      <p><span class="date">2025-10-27</span> <a href="/content.html?p=md/review-the-crta-new-exam.md">Review: The New CRTA Exam — Is It Easier Now?</a></p>
+      <p><span class="date">2025-02-11</span> <a href="/content.html?p=md/esc4-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">ADCS Attack Paths Series: ESC4 ADCS Misconfigurations</a></p>
+      <p><span class="date">2025-10-22</span> <a href="/content.html?p=md/esc3-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">ADCS Attack Paths Series: ESC3 ADCS Misconfigurations</a></p>
+      <p><span class="date">2025-10-19</span> <a href="/content.html?p=md/esc2-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">ADCS Attack Paths Series: ESC2 ADCS Misconfigurations</a></p>
+      <p><span class="date">2025-09-03</span> <a href="/content.html?p=md/esc1-ad-cs-misconfigurations-exploitation-active-airectory-pentesting.md">ADCS Attack Paths Series: ESC1 ADCS Misconfigurations</a></p>
+      <p><span class="date">2025-09-21</span> <a href="/content.html?p=md/first-time-WiFi-pentest—real-world-findings.md">First-Time WiFi Pentest — Real-World Findings</a></p>
+      <p><span class="date">2025-09-21</span> <a href="/content.html?p=md/rogue-rdp-via-spear-phishing-initial-access-tactic.md">Rogue RDP via Spear Phishing: Initial Access Tactic</a></p>
+      <p><span class="date">2025-09-08</span> <a href="/content.html?p=md/the-useless-tradition-of-ospek-and-indonesia-feudal-mentality.md">The Useless Tradition of Ospek and Indonesia’s Feudal Mentality</a></p>
+      <p><span class="date">2025-09-04</span> <a href="/content.html?p=md/simplifying-pivoting-using-ligolo-ng.md">Simplifying Pivoting Using Ligolo-ng Lateral Movement</a></p>
+      <p><span class="date">2025-09-04</span> <a href="/content.html?p=md/eCPPTv3-certification-review-Dont-take-it.md">eCPPTv3 Certification Review | Don’t Take It?</a></p>
+      <p><span class="date">2025-09-04</span> <a href="/content.html?p=md/how-i-can-get-P1-nasa-easily-dorking.md">How I Can Get P1 Nasa easily — Dorking</a></p>
+      <p><span class="date">2025-06-17</span> <a href="/content.html?p=md/backup-vulnerabilities-android-mobile-application.md">Backup Vulnerabilities Android Mobile Application</a></p>
+      <p><span class="date">2025-03-16</span> <a href="/content.html?p=md/lateral-movement-double-pivoting-with-ligolo-ng.md">Lateral Movement Double Pivoting with Ligolo-ng</a></p>
+      <p><span class="date">2025-03-16</span> <a href="/content.html?p=md/backup-vulnerabilities-android-mobile-application.md">Extract file from .DS_Store — Information Disclosure</a></p>
     </div>
 
     <hr>
