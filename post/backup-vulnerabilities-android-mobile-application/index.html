@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://0xc4t.github.io/content.html?p=md/backup-vulnerabilities-android-mobile-application.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup Vulnerabilities Android Mobile Application</title>
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+    <link rel="stylesheet" href="../../style.css">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Backup Vulnerabilities Android Mobile Application">
+    <meta property="og:description" content="Android Backup Vulnerabilities are vulnerabilities where an application allows backups for the application, this vulnerability will be very impactful if the same application has Insecure data storage vulnerabilities, because the application’s internal files can be stolen without root, even though the android device must turn on usb debugging">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="0xc4t Posts">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:720/format:webp/1*d0Gij60zBznjCu_vbdsJVQ.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="https://0xc4t.github.io/index.html">Posts</a>
+      <a href="https://0xc4t.github.io/about.html">About</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h2>Backup Vulnerabilities Android Mobile Application</h2>
+<p>hello everyone today I will share about Android Backup Vulnerabilities, this is one of the findings that I often find when doing pentest on android applications, especially on mobile applications. I made this article because it was quite inspired by <a href="https://vishwarajbhattrai.wordpress.com/2017/07/17/finding-backup-vulnerabilities-in-android-apps/">this blog</a> Now lets just go straight to the discussion.</p>
+<p>Android Backup Vulnerabilities are vulnerabilities where an application allows backups for the application, this vulnerability will be very impactful if the same application has Insecure data storage vulnerabilities, because the application’s internal files can be stolen without root, even though the android device must turn on usb debugging</p>
+<h3>How to look for it?</h3>
+<p>Check the androidmanifest.xml file and highlight the android:allowBackup text, if android:allowBackup = "true" this means that the application is vulnerable to android backup vulnerabilities, and vice versa if the value is false, it means that the android application is not vulnerable to Android Backup Vulnerabilities, it's easy, right? okay, continue to the demo.</p>
+<p>Unpack the app using jadx and then open the Androidmanifest.xml file, this file is usually found in Resource</p>
+<p><img src="1_d0Gij60zBznjCu_vbdsJVQ.webp" alt="Preview 1"></p>
+<p>Using the adb (android debug brigde) tool, we try to backup the application folder with commands more or less like this, and don’t forget to connect the adb via usb or wireless.</p>
+<pre><code class="language-bash">adb backup -f &lt;backup-name.ab&gt; &lt;app-package-name&gt;
+adb backup -f application com.app.info
+</code></pre>
+<p>Using <a href="https://github.com/nelenkov/android-backup-extractor/releases/download/master-20221109063121-8fdfc5e/abe.jar">ABE (Android Backup Extractor)</a> convert .ab files to .tar so that they can be extracted, look like the picture below the internal application folder can be retrieved. When converting the abe tool, it will ask for the password that we created before</p>
+<p><img src="1_0a_hc7NYP57p3np_BYQ6_g.webp" alt="Preview 2"></p>
+<p><img src="1_ERbUPQqqOyK69dPIR67Zfw.webp" alt="Preview 3"></p>
+<h3>Refrence</h3>
+<ul>
+<li>
+<p><a href="https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage">https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage</a></p>
+</li>
+<li>
+<p><a href="https://www.appsealing.com/insecure-data-storage/">https://www.appsealing.com/insecure-data-storage/</a></p>
+</li>
+</ul>
+</div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>

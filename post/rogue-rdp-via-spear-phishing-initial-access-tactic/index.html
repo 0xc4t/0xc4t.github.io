@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)https://0xc4t.github.io/content.html?p=md/rogue-rdp-via-spear-phishing-initial-access-tactic.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogue RDP via Spear Phishing: Initial Access Tactic</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rogue RDP via Spear Phishing: Initial Access Tactic">
+    <meta property="og:description" content="Rogue RDP is a technique where an attacker creates an .rdp file with a configuration that allows (or forces) the client to share disks, such as C:// and D://. This allows the attacker to steal files from the client’s disk as well as embed malicious applications by uploading them to the Startup directory, so that they run automatically when the system starts up.">
+    <meta property="og:site_name" content="0xc4t Posts">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*IQWeoLCFCq4DbD2-o_fDIA.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="https://0xc4t.github.io/index.html">Posts</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h2>Rogue RDP via Spear Phishing: Initial Access Tactic</h2>
+<p>When I just woke up in the morning today, I immediately made coffee and while scrolling twitter (X) in the hope of getting inspiration or resources shared by people on twitter, about 15–20 minutes I scrolled, I found a post that shared an article from Black Hill InfoSec which discussed rogue rdp, After opening and reading the article I tried to apply it to my active directory infrastructure, where I have 2 domains, namely child (DC02) and parrent (DC01) and one windows server (EMP-Mechine) that joins the child domain (DC02), I tried this attack for Windows Server (EMP-Mechine) for initial access.</p>
+<h3>Whats is RDP?</h3>
+<p>RDP (Remote Desktop Protocol) is a service in computer networks that allows users to access other computers over the network. By default, RDP runs on port 3389 and is commonly found on Windows networks, although in some cases, RDP is also used on Linux-although quite rarely.</p>
+<h3>What is Rogue RDP?</h3>
+<p>Rogue RDP is a technique where an attacker creates an .rdp file with a configuration that allows (or forces) the client to share disks, such as C:// and D://. This allows the attacker to steal files from the client’s disk as well as embed malicious applications by uploading them to the Startup directory, so that they run automatically when the system starts up.</p>
+<p>You can create this .rdp file using the built-in Remote Desktop Connection software from Windows, you can follow these steps to create a rogue rdp.</p>
+<hr>
+<p><img src="1_aZ-CBdCFd5w-qDJsngP6kQ.webp" alt="1">
+Click the show options section</p>
+<hr>
+<p><img src="1_cmiOsI7XQG8CFHWvf1hKfw.webp" alt="2">
+Navigate to the IP that will be the rogue RDP and checklist the Allow me to save credentials section.</p>
+<hr>
+<p><img src="1_DTnSYUykUl08Ww7NSkT4Vg.webp" alt="3">
+Select the Advanced Menu then change “if server authentucation fails:” to be as shown in this image</p>
+<hr>
+<p><img src="1_jMXUcHFQDfJ-b6Vkw9KYNA.webp" alt="4">
+Select “Load Resource” and then select “More”</p>
+<hr>
+<p><img src="1_Ms9sQhsHf75G421Yuz1k_w.webp" alt="5">
+Select drives and checklist all</p>
+<hr>
+<p><img src="1_vacQSzKdGMFS14Kv_ynkUg.webp" alt="6">
+Save the configuration file and you have created a rogue rdp file ready to be used for spear phishing.</p>
+<p>To make the scheme more realistic, I have tried sending the .rdp file to the target email “EMP-Mechine” at kimmy.kim@mail.wtbank.local.</p>
+<hr>
+<p><img src="1_IQWeoLCFCq4DbD2-o_fDIA.webp" alt="7">
+Then when kimmy downloaded the rdp file and then connected to the RDP, he unknowingly shared his C drive access.</p>
+<hr>
+<p><img src="1_1d7SLzwo8GHSHbTdANwN2w.webp" alt="8">
+Connect</p>
+<hr>
+<p><img src="1_JjKSF58khwuosYNb3P21pQ.webp" alt="9">
+You can see here that the box account can access the C drive of the user kimmy and not only access the box account (rdp host) can also upload malware and place it in the startup application.</p>
+<hr>
+<p><img src="1_IXZ3E8Bu_RLUzygdW8xudw.webp" alt="10">
+Quite simple but dangerous, maybe this is all the discussion about rogue rdp, keep in mind that the article I made only focuses on practice rather than theory, because you can get the theory in articles on the internet, thank you for reading until the end.</p>
+</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>

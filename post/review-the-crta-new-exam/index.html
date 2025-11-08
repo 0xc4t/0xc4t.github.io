@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://0xc4t.github.io/content.html?p=md/review-the-crta-new-exam.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: The New CRTA Exam — Is It Easier Now?</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Review: The New CRTA Exam — Is It Easier Now?">
+    <meta property="og:description" content="Evening. At 08:00 on October 25, 2025, my friend Rama took the CRTA (Certified Red Team Analyst) exam — it only cost $9 because it was on discount. I had previously purchased the same certification, which follows a format similar to OSCP: you must create a report and submit it via email to CyberWarfare, the provider and developer of the certification.">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="https://0xc4t.github.io/index.html">Posts</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h2>Review: The New CRTA Exam — Is It Easier Now?</h2>
+<p>Evening. At 08:00 on October 25, 2025, my friend Rama took the CRTA (Certified Red Team Analyst) exam — it only cost $9 because it was on discount. I had previously purchased the same certification, which follows a format similar to OSCP: you must create a report and submit it via email to CyberWarfare, the provider and developer of the certification.</p>
+<p>To be honest, the older CRTA was quite challenging — you had to perform a Golden Ticket attack to gain Enterprise Admin privileges and then read the secret.xml file. The new CRTA, however, is noticeably easier; there’s no pivoting or complex chaining involved.</p>
+<p>So, what kinds of attacks can you expect in the new CRTA? Interestingly, the Active Directory setup no longer includes kerberoasting — which is quite unusual since Kerberos-based attacks are typically a core part of any AD assessment. Moreover, if you want to pass the exam, you need to pay close attention to usernames, especially on Windows machines, as they contain extremely valuable clues. You can actually obtain the secret.xml simply by analyzing the BloodHound results.</p>
+<p>&lt;b&gt;Below are the attacks featured in the latest CRTA version — the ones you might want to study first: &lt;/b&gt;</p>
+<ul>
+<li>Local File Inclusion (https://blog.nody.cc/posts/container-breakouts-part1/)</li>
+<li>Misconfig Sudo For Privilege Escalation (https://gtfobins.github.io/)</li>
+<li>DCSync Attack (https://iam0xc4t.medium.com/dcsync-attack-gaining-domain-admin-via-active-directory-replication-3280a759cd95)</li>
+<li>Pass The Hash (https://viperone.gitbook.io/pentest-everything/everything/everything-active-directory/lateral-movement/alternate-authentication-material/wip-pass-the-hash)</li>
+<li>Credential Dumping (https://wadcoms.github.io/)</li>
+<li>ACL Misconfig Abuse (https://www.thehacker.recipes/ad/movement/dacl/)</li>
+</ul>
+<p>That’s pretty much all you need to study if you want to pass the CRTA exam. Unlike before, the new version is less challenging, and the report format is still engaging but much simpler. That’s it for this short, straightforward review — nothing complicated, just to the point.</p>
+<p>Thanks for reading, and I hope this helps you pass your CRTA exam! See you! 👋</p>
+</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>
