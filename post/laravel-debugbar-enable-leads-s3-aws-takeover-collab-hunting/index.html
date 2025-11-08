@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://localhost:8000/content.html?p=md/laravel-debugbar-enable-leads-s3-aws-takeover-collab-hunting.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xc4t Notes</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laravel Debugbar enable Leads s3 Aws Takeover — Collab Hunting">
+    <meta property="og:description" content="Laravel Debugbar is a development tool for the Laravel PHP framework, designed to help developers debug their applications more efficiently. It integrates with Laravel and provides a visual representation of various debugging information directly in the browser.">
+    <meta property="og:site_name" content="0xc4t Notes">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:720/format:webp/1*Z8NwWgLjXJs3ElEy0O7gew.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="http://localhost:8000/index.html">Posts</a>
+      <a href="http://localhost:8000/about.html">About</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h2>Laravel Debugbar enable Leads s3 Aws Takeover — Collab Hunting</h2>
+<p>Laravel Debugbar is a development tool for the Laravel PHP framework, designed to help developers debug their applications more efficiently. It integrates with Laravel and provides a visual representation of various debugging information directly in the browser.</p>
+<h3>AWS S3</h3>
+<p>Amazon Simple Storage Service (Amazon S3) is a scalable object storage service provided by Amazon Web Services (AWS). It is designed to store and retrieve any amount of data from anywhere on the web.</p>
+<h3>Case</h3>
+<p>Today I started bug hunting on several websites with my friend 0x0d3ad we found a laravel debugbar enable vulnerability on the website we tested and the debugbar provides quite sensitive information. Out of curiosity, my friend and I tried to explore the contents of the laravel debugbar, and we found the secret key, access key, region, bucket from aws S3 and I tried to access the bucket using the AWSCLI tool with a little config more or less like this</p>
+<pre><code class="language-bash">awscli configure
+
+- Enter Secret Key
+- Enter Access Key
+- Enter Region
+- Enter
+</code></pre>
+<p><img src="1_l6X2bRcg2E_8Vpc322Pthw.webp" alt="alt text">
+S3 Exposure</p>
+<hr>
+<p><img src="1_qnBUwMI8qP4C8L03Q7rrCQ.webp" alt="alt text">
+Config</p>
+<hr>
+<pre><code class="language-bash">sudo aws s3api get-bucket-acl --bucket &lt;bucket&gt;
+</code></pre>
+<p><img src="1_Z8NwWgLjXJs3ElEy0O7gew.webp" alt="alt text">
+Connect</p>
+<hr>
+<pre><code class="language-bash">sudo aws s3 ls 's3://&lt;host&gt;/'
+</code></pre>
+<p><img src="1_Lr7aI3BDp609Rx_KbtEbbg.webp" alt="alt text">
+Got Shell !!!</p>
+<hr>
+<p><img src="1_T7llu1ltRnEi_y9IUtj3gw.webp" alt="alt text">
+Stored XSS</p>
+<hr>
+<h3>Refrence</h3>
+<ul>
+<li><a href="https://atos.net/en/lp/securitydive/poorly-configured-s3-buckets-a-hackers-delight">https://atos.net/en/lp/securitydive/poorly-configured-s3-buckets-a-hackers-delight</a></li>
+<li><a href="https://cloud.hacktricks.xyz/pentesting-cloud/aws-security/aws-post-exploitation/aws-s3-post-exploitation">https://cloud.hacktricks.xyz/pentesting-cloud/aws-security/aws-post-exploitation/aws-s3-post-exploitation</a></li>
+<li><a href="https://www.yeswehack.com/learn-bug-bounty/abusing-s3-bucket-permissions">https://www.yeswehack.com/learn-bug-bounty/abusing-s3-bucket-permissions</a></li>
+</ul>
+</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>
