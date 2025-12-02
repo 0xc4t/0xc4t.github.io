@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)/ml?p=md/ewptxv3-certification-review.md -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xc4t Notes</title>
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="eWPTXv3 Certification Review">
+    <meta property="og:description" content="Hello World! So, my friend bought the eWPTXv3 certification because it was on sale at the time. I asked him whether it was good or not, and he said it was pretty solid. And guess what—on December 1st, there was a Black Friday discount where the price dropped to $199.50 (around Rp 3,300,000). So I decided to buy eWPTXv3 and start working on it immediately.">
+    <meta property="og:site_name" content="0xc4t Notes">
+    <meta property="og:image" content="https://cdn-images-1.medium.com/max/800/0*6mEPpOi94eK2dzLK.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1960719102932344837/T8Sl7V0i_400x400.jpg">
+
+
+  </head>
+  <body>
+    <h1>0xc4t Notes</h1>
+    <p class="slogan">
+      <i>Web Security &amp; Active Directory Security</i>
+    </p>
+    <nav>
+      <a href="/">Posts</a>
+    </nav>
+    <hr>
+    <div id="content" class="content"><h3>eWPTXv3 Certification Review</h3>
+<p><img src="0_6mEPpOi94eK2dzLK.png" alt="alt text"></p>
+<p>Hello World! So, my friend bought the eWPTXv3 certification because it was on sale at the time. I asked him whether it was good or not, and he said it was pretty solid. And guess what—on December 1st, there was a Black Friday discount where the price dropped to <strong>$199.50 (around Rp 3,300,000)</strong>. So I decided to buy eWPTXv3 and start working on it immediately.</p>
+<p>At first, I was overthinking because I was scared eWPTXv3 would have tons of rabbit holes. And since v3 is different from v2—where v2 used to be a full exam report—this one is multiple choice. You run the labs and answer the questions provided. So now I want to talk about what’s good and what’s bad about eWPTXv3. <strong>Let’s goo.</strong></p>
+<h2><strong>Good!</strong></h2>
+<p>The practical format is modern and fast. v3 gives you <strong>18 hours</strong> with lab tasks and multiple-choice questions. The nice part is once you submit all answers, the result comes out instantly—no more waiting for reviewers like in v2.</p>
+<p>The labs are structured and focus on real-world cases. There are lots of advanced web exploitation techniques like <strong>JWT abuse, API issues, broken authentication</strong>, and more. It's definitely more relevant to actual work.</p>
+<p>And lastly… the <strong>discount</strong>, hahaha. Let’s be honest, I bought this because it was on sale. Plus, I wanted to learn anyway. In my workplace, this cert is quite recognized. Since I’m trying to get a salary raise, I just bought it hahaha. (just kidding… maybe)</p>
+<h3><strong>Bad!</strong></h3>
+<p><strong>First</strong>, some of the questions are unclear or just weird. For example, there was a question like, “How many web servers and endpoints exist on this IP?”. And they expect you to answer this with multiple choice? The question itself sounds like it wants two numbers, but the MCQ expects only one. Like bro… which one are we choosing?</p>
+<p>Another example is: “What is the name of the API endpoint responsible for XYZ?”
+Okay easy, but do you want the <em>name</em> only or the full path like <code>/api/userinfo</code>? Kinda annoying because they don’t specify the expected format. A simple hint like “answer using /path/to/endpoint” would solve this.</p>
+<p><strong>Second</strong>, the lab environment itself. I used wfuzz for username enumeration and suddenly the whole lab lagged out. I had to restart it multiple times. Sometimes the screen even went blank. That kills the mood, and when you reset, all your progress is gone. Pain.</p>
+<p><strong>Third</strong>, blind spots. From what I read, some people couldn't find <strong>any</strong> NoSQLi or LDAP issues at all. Which is weird, because if the exam asks about them and you didn't encounter them in your environment, you're screwed. It becomes a “skill issue” moment real quick.</p>
+<h3><strong>Tips Buat Pass Exam</strong></h3>
+<ol>
+<li>
+<p>Prepare coffee. If you're stuck, take a 15–20 minute break and then continue.</p>
+</li>
+<li>
+<p>Don’t overthink the exam. Honestly, it’s easier than v2. Just do clean recon and stay organized.</p>
+</li>
+<li>
+<p>Use a one-domain-one-folder structure.
+Example: make <code>example.com</code>, <code>api.example.com</code>, etc. Keep things clean. Start from the main domain and perform recon with dirb/wfuzz and so on.</p>
+</li>
+<li>
+<p>Prepare by studying NoSQLi, JWT, API pentesting, and similar topics. These will show up later, from JWT cracking to user enumeration to exploiting OpenAPI and more.</p>
+</li>
+<li>
+<p>Tools you’ll be using a lot: <strong>Wfuzz, Burp Suite, your browser, public exploits, sqlmap</strong>, and whatever else you prefer. Just adjust according to your workflow.</p>
+</li>
+</ol>
+<p><img src="1_JqFNY0u-MLk-bUPiRLWW-g.jpg" alt="eWPTXv3"></p>
+<p><a href="https://certs.ine.com/5bdd016d-3189-472e-a732-4f8fc0cb077d#acc.XjltHE4G">See My Credential</a></p>
+<h3><strong>Conclusion</strong></h3>
+<p>Overall, eWPTXv3 is a solid certification if you’re aiming to level up your advanced web exploitation skills. The practical labs, the modern exam format, the instant grading, and the real-world scenarios make it a good investment—especially if you grab it during a discount.</p>
+<p>But yeah, it’s not perfect. Some questions feel unclear, the lab environment can be unstable at times, and there are a few blind spots depending on how your lab instance behaves. Still, none of these are deal-breakers as long as you stay calm, organized, and patient during the exam.</p>
+<p>If you prepare properly—learn the core attack vectors, practice recon, understand JWT/API/NoSQLi topics, and use the right tools—you’ll be able to pass without stressing too much.</p>
+<p>At the end of the day, eWPTXv3 is worth it if you're looking for a hands-on, real-case web exploitation exam that actually helps you grow as a pentester. And hey… a little discount never hurts.</p>
+</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0xc4t?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/iamvarel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <div class="footer">
+      © 2025 0xc4t
+    </div>
+
+
+</body></html>
